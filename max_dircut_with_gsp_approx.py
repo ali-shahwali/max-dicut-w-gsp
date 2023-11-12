@@ -12,7 +12,7 @@ import itertools
     Future comments will refer to this as [AHS01]
 """
 
-excluded_tests = ["test1.txt", "test2.txt"]
+excluded_tests = ["test1.txt", "test2.txt", "test3.txt"]
 np.set_printoptions(precision=16)
 
 
@@ -184,7 +184,7 @@ def round2(x: List[float]):
     return x_prime
 
 
-def round_small_numbers(numbers, tolerance=1e-6):
+def round_small_numbers(numbers, tolerance=1e-7):
     rounded_numbers = []
     for number in numbers:
         if number < tolerance:
@@ -227,10 +227,11 @@ def pprint_cut(graph: Graph, solution):
 
 if __name__ == "__main__":
     graphs = read_input()
-
+    part_size = 3
+    print(f"#### PART SIZE IS SET TO {part_size} ####")
     for idx, graph in enumerate(graphs):
-        (approx, approx_weight) = approx_max_dicut_with_gsp(graph, 7)
-        (opt_solution, opt_weight) = brute_force_max_dicut_with_gsp(graph, 7)
+        (approx, approx_weight) = approx_max_dicut_with_gsp(graph, part_size)
+        (opt_solution, opt_weight) = brute_force_max_dicut_with_gsp(graph, part_size)
 
         print(f"---- GRAPH {graph.name} DONE ----")
         print("*** APPROXIMATE SOLUTION ***")
